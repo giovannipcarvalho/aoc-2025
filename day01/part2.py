@@ -1,5 +1,3 @@
-import sys
-
 input = """\
 L68
 L30
