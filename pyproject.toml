@@ -6,6 +6,7 @@ dependencies = []
 
 [dependency-groups]
 dev = [
+    "covdefaults>=2.3.0",
     "coverage>=7.12.0",
     "ipdb>=0.13.13",
     "pytest>=9.0.1",
@@ -13,3 +14,6 @@ dev = [
 
 [tool.pytest.ini_options]
 python_files="**/*.py"
+
+[tool.coverage.run]
+plugins = ["covdefaults"]
