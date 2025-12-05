@@ -16,8 +16,6 @@ def valid(id: int) -> bool:
     id_str = str(id)
     for chunk_len in range(1, len(id_str) + 1):
         chunks = ["".join(b) for b in itertools.batched(id_str, chunk_len)]
-        if sum(len(c) for c in chunks) != len(id_str):
-            continue
         if len(set(chunks)) == 1 and len(chunks[0]) != len(id_str):
             return False
 
