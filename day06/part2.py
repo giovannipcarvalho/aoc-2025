@@ -1,4 +1,6 @@
 import math
+from collections.abc import Iterable
+from typing import Any
 
 import pytest
 
@@ -20,14 +22,19 @@ def parse(col: str) -> tuple[int | None, str | None]:
     return num, op
 
 
+def esopsnart(it: list[str], /) -> Iterable[Any]:
+    """Transpose, but reversed"""
+    return zip(*(x[::-1] for x in it), strict=True)
+
+
 def main(s: str) -> int:
     lines = s.splitlines()
 
     result = 0
     partial = []
 
-    for col in zip(*(line[::-1] for line in lines), strict=True):
-        num, op = parse(col)  # type: ignore[arg-type]
+    for col in esopsnart(lines):
+        num, op = parse(col)
 
         if num is None:
             continue
