@@ -48,7 +48,7 @@ def test() -> None:
 
 
 if __name__ == "__main__":
-    # stdin
-    with open(0) as f:
-        s = f.read()
+    from pathlib import Path
+
+    s = Path(__file__).with_name("input.txt").open().read()
     print(main(s))

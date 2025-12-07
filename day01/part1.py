@@ -1,5 +1,3 @@
-import sys
-
 input = """\
 L68
 L30
@@ -37,4 +35,7 @@ def test_part1() -> None:
 
 
 if __name__ == "__main__":
-    print(main(sys.stdin.read()))
+    from pathlib import Path
+
+    s = Path(__file__).with_name("input.txt").open().read()
+    print(main(s))

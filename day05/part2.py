@@ -72,6 +72,7 @@ def test_overlaps(a: tuple[int, int], b: tuple[int, int], expected: bool) -> Non
 
 
 if __name__ == "__main__":
-    with open("day05/input2.txt") as f:
-        s = f.read()
+    from pathlib import Path
+
+    s = Path(__file__).with_name("input.txt").open().read()
     print(main(s))

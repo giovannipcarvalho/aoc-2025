@@ -36,6 +36,7 @@ def test_part2() -> None:
 
 
 if __name__ == "__main__":
-    with open("day01/input2.txt") as f:
-        s = f.read()
-        print(main(s))
+    from pathlib import Path
+
+    s = Path(__file__).with_name("input.txt").open().read()
+    print(main(s))

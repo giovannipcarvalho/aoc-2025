@@ -29,6 +29,7 @@ def main(s: str) -> int:
 
 
 if __name__ == "__main__":
-    with open("day02/input1.txt") as f:
-        s = f.read()
+    from pathlib import Path
+
+    s = Path(__file__).with_name("input.txt").open().read()
     print(main(s))
