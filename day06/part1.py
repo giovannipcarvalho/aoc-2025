@@ -26,7 +26,7 @@ def main(s: str) -> int:
                         result[i] = num
                     else:
                         result[i] *= num
-                case _:
+                case _:  # pragma: no cover
                     raise ValueError("unknown op")
 
     return sum(result)
