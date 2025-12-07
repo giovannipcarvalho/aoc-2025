@@ -1,4 +1,4 @@
-all: deps check test
+all: deps check cov
 
 deps:
 	uv sync --locked
