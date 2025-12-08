@@ -27,3 +27,7 @@ Day 6:
 Day 7:
 * 7.1. Simple walk through the grid.
 * 7.2. I got stuck for a while and was too lazy to do anything elaborate, so I just cheesed a `@cache`d recursive solution.
+
+Day 8:
+* 8.1. Starting with graphs made it too much complex.  Checking and merging sets was simpler and nicer.
+* 8.2. Too easy in comparison to part 1, or maybe I got lucky with my original solution being very easy to adapt for the second part.
