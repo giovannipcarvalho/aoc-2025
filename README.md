@@ -31,3 +31,7 @@ Day 7:
 Day 8:
 * 8.1. Starting with graphs made it too much complex.  Checking and merging sets was simpler and nicer.
 * 8.2. Too easy in comparison to part 1, or maybe I got lucky with my original solution being very easy to adapt for the second part.
+
+Day 9:
+* 9.1. Similar to yesterday's, but maximizing point distance rather than minimizing.
+* 9.2. This was the steepest part1->part2 so far.  Fortunately checking if any perimeter (green tile) point is inside the square worked (~500k perimeter points).  I profiled it a bit and expected it to finish within ~15min, which it did.  Optimizing it to check line segments was much more annoying, because I kept getting the checks wrong... but it turned out much faster than I expected (considering that I am still checking all point pairs).
