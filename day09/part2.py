@@ -21,41 +21,52 @@ def area(a: tuple[int, ...], b: tuple[int, ...]) -> int:
     return math.prod(ds)
 
 
-def minmax(a: int, b: int) -> tuple[int, int]:
+type Point = tuple[int, int]
+type Segment = tuple[Point, Point]
+
+
+def minmax(a: int, b: int) -> Point:
     return min(a, b), max(a, b)
 
 
 def valid(
-    a: tuple[int, int],
-    b: tuple[int, int],
-    perimeter: list[tuple[int, int]],
+    a: Point,
+    b: Point,
+    perimeter_segments: list[Segment],
 ) -> bool:
-    """
-    Checks if any perimeter point is inside the rectangle defined by points a,b.
-    """
     x1, x2 = minmax(a[0], b[0])
     y1, y2 = minmax(a[1], b[1])
 
-    return not any(x1 < x < x2 and y1 < y < y2 for x, y in perimeter)
+    for (ax, ay), (bx, by) in perimeter_segments:
+        # fully inside
+        if x1 < ax < x2 and x1 < bx < x2 and y1 < ay < y2 and y1 < by < y2:
+            return False  # pragma: no cover
+
+        # vertical segment
+        if ax == bx and x1 < ax < x2 and by > y1 and ay < y2:
+            return False
+
+        # horizontal segment
+        if ay == by and y1 < ay < y2 and bx > x1 and ax < x2:
+            return False
+
+    return True
 
 
 def main(s: str) -> int:
     points = [tuple(int(i) for i in p.split(",")) for p in s.splitlines()]
-    perimeter: list[tuple[int, int]] = []
+    perimeter_segments: list[Segment] = []
 
     for a, b in itertools.pairwise([*points, points[0]]):
-        if a[0] == b[0]:
-            r = range(min(a[1], b[1]) + 1, max(a[1], b[1]))
-            perimeter.extend((a[0], n) for n in r)
-        else:
-            r = range(min(a[0], b[0]) + 1, max(a[0], b[0]))
-            perimeter.extend((n, a[1]) for n in r)
+        x1, x2 = minmax(a[0], b[0])
+        y1, y2 = minmax(a[1], b[1])
+        perimeter_segments.append(((x1, y1), (x2, y2)))
 
     areas = [
         (area(points[i], points[j]), points[i], points[j])
         for i in range(len(points))
         for j in range(i + 1, len(points))
-        if valid(points[i], points[j], perimeter)  # type: ignore[arg-type]
+        if valid(points[i], points[j], perimeter_segments)  # type: ignore[arg-type]
     ]
 
     max_area, _p1, _p2 = max(areas)
