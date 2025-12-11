@@ -5,13 +5,11 @@
 # SESSION environment variable must be set to the advent of code session cookie
 
 set -eu
-
-. ../.env
-
+. .env
 curl \
     -A "giovannipcarvalho via curl" \
     -H "cookie: session=${SESSION}" \
-    -sSLo input.txt \
+    -sSLo day$(printf '%02d' $1)/input.txt \
     https://adventofcode.com/2025/day/$1/input
 
-head -2 input.txt
+head day$(printf '%02d' $1)/input.txt
